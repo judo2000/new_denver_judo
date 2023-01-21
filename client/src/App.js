@@ -1,7 +1,12 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+import { useState } from 'react';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
-import SideNav from './components/SideNav';
 import HomeScreen from './screens/HomeScreen';
+import Container from 'react-bootstrap/Container';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import { LinkContainer } from 'react-router-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 // Construct main GraphQL API endpoint
 const client = new ApolloClient({
@@ -9,13 +14,100 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 function App() {
+  const location = window.location.pathname;
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div className="site-container d-flex flex-column">
+        <div
+          className={
+            sidebarIsOpen
+              ? 'site-container active-cont d-flex flex-column'
+              : 'site-container d-flex flex-column'
+          }
+        >
           <header>
-            <SideNav />
+            <Navbar
+              expand="lg"
+              className={`navbar navbar-dark ${
+                location === '/' ? 'navbar-custom' : 'navbar-custom-light'
+              }`}
+            >
+              <Container fluid>
+                <LinkContainer to="/">
+                  <Navbar.Brand>
+                    <img
+                      className="ms-4"
+                      src={
+                        location === '/'
+                          ? 'assets/img/DJ-logo-black.png'
+                          : 'assets/img/DJ-logo-white.png'
+                      }
+                      alt="Denver Judo"
+                      style={{ width: '80px' }}
+                    />{' '}
+                  </Navbar.Brand>
+                </LinkContainer>
+                <h1
+                  className={
+                    location === '/'
+                      ? 'navTitle-dark text-center'
+                      : 'navTitle text-center'
+                  }
+                >
+                  Denver Judo
+                </h1>
+
+                <Button
+                  style={{
+                    backgroundColor: location === '/' ? '#d9d9d9' : '#262626',
+                  }}
+                  onClick={() => setSidebarIsOpen(!sidebarIsOpen)}
+                  className="me-4"
+                >
+                  <i
+                    className="fa fa-bars fa-lg"
+                    style={{
+                      color: location === '/' ? '#262626' : '#d9d9d9',
+                    }}
+                  ></i>
+                </Button>
+              </Container>
+            </Navbar>
           </header>
+          <div
+            className={
+              sidebarIsOpen
+                ? 'active-nav side-navbar d-flex justify-content-between flex-wrap flex-column'
+                : 'side-navbar d-flex justify-content-between flex-wrap flex-column'
+            }
+          >
+            <Nav className="flex-column text-white w-100 p-2">
+              <Nav.Item>
+                <strong>Denver Judo</strong>
+              </Nav.Item>
+              <LinkContainer to="/" onClick={() => (this.expand = '')}>
+                <Nav.Link
+                  className={
+                    location === '/' ? 'nav-text nav-text-bold' : 'nav-text'
+                  }
+                >
+                  Home
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/schedule" onClick={() => (this.expand = '')}>
+                <Nav.Link
+                  className={
+                    location === '/schedule'
+                      ? 'nav-text nav-text-bold'
+                      : 'nav-text'
+                  }
+                >
+                  Schedule
+                </Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </div>
           <main>
             <Routes>
               <Route path="/" element={<HomeScreen />}>

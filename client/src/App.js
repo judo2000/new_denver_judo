@@ -1,6 +1,6 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
-import Header from './components/Header';
+import SideNav from './components/SideNav';
 import HomeScreen from './screens/HomeScreen';
 
 // Construct main GraphQL API endpoint
@@ -12,14 +12,21 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<HomeScreen />}>
-              Home
-            </Route>
-          </Routes>
-        </main>
+        <div className="site-container d-flex flex-column">
+          <header>
+            <SideNav />
+          </header>
+          <main>
+            <Routes>
+              <Route path="/" element={<HomeScreen />}>
+                Home
+              </Route>
+            </Routes>
+          </main>
+          <footer>
+            <div className="text-center">All rights reserved</div>
+          </footer>
+        </div>
       </Router>
     </ApolloProvider>
   );

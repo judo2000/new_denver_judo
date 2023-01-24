@@ -1,11 +1,11 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 //const path = require('path');
-
+const dotenv = require('dotenv');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
-const { default: connectDB } = require('./config/connection');
 
+dotenv.config();
 const PORT = 3001;
 const app = express();
 

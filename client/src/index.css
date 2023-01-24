@@ -24,6 +24,11 @@ main {
   flex: 1;
 }
 
+footer {
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+}
 /* Nav and offcanvas */
 .navbar-custom {
   background-color: #d9d9d9;
@@ -99,4 +104,159 @@ main {
 
 .navTitle-dark {
   color: 000;
+}
+
+.video-wrapper {
+  width: auto;
+  height: auto;
+}
+.react-player {
+  padding-top: 36.25%;
+  position: relative;
+}
+
+.react-player > div {
+  position: absolute;
+}
+
+.home-heading {
+  font-family: 'Bebas Neue';
+  font-weight: 400;
+  font-size: 60;
+  line-height: 72px;
+  text-transform: uppercase;
+}
+
+.home-sub-heading {
+  font-family: 'Bebas Neue';
+  font-weight: 400;
+  font-size: 48px;
+  line-height: 67.2px;
+  text-transform: uppercase;
+}
+
+.home-section-heading {
+  font-family: 'DM Sans';
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 34px;
+}
+
+.home-section-text {
+  font-family: 'DM Sans';
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 34px;
+}
+
+.home-section-text a {
+  color: var(--dj-red);
+}
+
+.class-image {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Body text */
+.body-small {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.sub-title {
+  font-weight: 700;
+}
+
+.try-a-class {
+  background-color: var(--dj-red);
+}
+
+.free-class-heading {
+  color: white;
+  font-size: 40px;
+  font-weight: 400;
+  line-height: 62.7px;
+}
+
+.home-about {
+  background-color: black;
+  padding-left: 1px;
+}
+
+.home-about-img {
+  width: 321px;
+  height: 373px;
+}
+
+.faqs .faq {
+  width: 100%;
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 15;
+}
+
+.faqs .faq {
+  margin: 15px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.faqs .faq .faq-question {
+  position: relative;
+  font-size: 20px;
+  padding-right: 80px;
+  transition: all 0.4s ease;
+}
+
+.faqs .faq .faq-question::after {
+  cursor: pointer;
+  content: '';
+  position: absolute;
+  top: 10%;
+  right: 0;
+  transform: translate(-50%);
+  width: 30px;
+  height: 30px;
+  background-image: url('../public/assets/img/angle-down-solid.svg');
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  transition: all 0.4s ease-out;
+}
+
+.faqs .faq .faq-answer {
+  opacity: 0;
+  max-height: 0;
+  overflow-y: hidden;
+  transition: all 0.4s ease-out;
+}
+
+.faqs .faq.open .faq-question {
+  margin-bottom: 15px;
+}
+
+.faqs .faq.open .faq-question::after {
+  transform: translateX(-50%) rotate(180deg);
+}
+
+.faqs .faq.open .faq-answer {
+  max-height: 1000px;
+  opacity: 1;
+}
+
+.map-container {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 400px) {
+  .home-heading {
+    font-size: 40;
+    line-height: 52px;
+    text-transform: uppercase;
+  }
 }

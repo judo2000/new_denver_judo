@@ -18,12 +18,12 @@ function App() {
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   return (
     <ApolloProvider client={client}>
-      <Router>
+      <Router location>
         <div
           className={
             sidebarIsOpen
               ? 'site-container active-cont d-flex flex-column'
-              : 'site-container d-flex flex-column'
+              : 'site-container  d-flex flex-column'
           }
         >
           <header>
@@ -44,7 +44,7 @@ function App() {
                           : 'assets/img/DJ-logo-white.png'
                       }
                       alt="Denver Judo"
-                      style={{ width: '80px' }}
+                      style={{ width: '60px' }}
                     />{' '}
                   </Navbar.Brand>
                 </LinkContainer>
@@ -116,7 +116,11 @@ function App() {
             </Routes>
           </main>
           <footer>
-            <div className="text-center">All rights reserved</div>
+            <div className="text-center">
+              Denver Judo
+              <br />
+              All rights reserved
+            </div>
           </footer>
         </div>
       </Router>

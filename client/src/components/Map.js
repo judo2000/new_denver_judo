@@ -12,7 +12,6 @@ const center = {
 };
 
 function GMap() {
-  console.log(process.env.NODE_ENV);
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey:
@@ -24,7 +23,6 @@ function GMap() {
   const [map, setMap] = React.useState(null);
   const zoom = 18;
   const onLoad = React.useCallback(function callback(map) {
-    // This is just an example of getting and using the map instance!!! don't just blindly copy!
     map.setZoom(zoom);
 
     setMap(map);

@@ -4,6 +4,7 @@ const path = require('path');
 const dotenv = require('dotenv');
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
+require('dotenv');
 
 dotenv.config();
 const PORT = process.env.PORT || 3001;
@@ -17,9 +18,9 @@ const server = new ApolloServer({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static(path.join(__dirname, '../client/build')));
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
+}
 
 app.get('*', (req, res) => {
   res.sendFild(path.join(__dirname, '../client/build/index.html'));

@@ -7,6 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap';
 import Button from 'react-bootstrap/Button';
+import AboutScreen from './screens/AboutScreen';
 
 // Construct main GraphQL API endpoint
 const client = new ApolloClient({
@@ -16,14 +17,15 @@ const client = new ApolloClient({
 function App() {
   const location = window.location.pathname;
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+
   return (
     <ApolloProvider client={client}>
-      <Router location>
+      <Router>
         <div
           className={
             sidebarIsOpen
               ? 'site-container active-cont d-flex flex-column'
-              : 'site-container  d-flex flex-column'
+              : 'site-container d-flex flex-column'
           }
         >
           <header>
@@ -33,7 +35,7 @@ function App() {
                 location === '/' ? 'navbar-custom' : 'navbar-custom-light'
               }`}
             >
-              <Container fluid>
+              <Container>
                 <LinkContainer to="/">
                   <Navbar.Brand>
                     <img
@@ -106,14 +108,26 @@ function App() {
                   Schedule
                 </Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/about" onClick={() => (this.expand = '')}>
+                <Nav.Link
+                  className={
+                    location === '/about'
+                      ? 'nav-text nav-text-bold'
+                      : 'nav-text'
+                  }
+                >
+                  About
+                </Nav.Link>
+              </LinkContainer>
             </Nav>
           </div>
           <main>
-            <Routes>
-              <Route path="/" element={<HomeScreen />}>
-                Home
-              </Route>
-            </Routes>
+            <Container>
+              <Routes>
+                <Route path="/" element={<HomeScreen />} />
+                <Route path="/about" element={<AboutScreen />} />
+              </Routes>
+            </Container>
           </main>
           <footer>
             <div className="text-center">

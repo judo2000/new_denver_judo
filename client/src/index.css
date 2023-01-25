@@ -18,6 +18,7 @@ body {
 
 .site-container {
   min-height: 100vh;
+  transition: 0.4s;
 }
 
 main {
@@ -43,27 +44,14 @@ footer {
   color: #000;
 }
 
-.offcanvas {
-  background-color: #000;
-}
-.navbar-toggler-icon {
-  color: pink;
-}
-
-.navLinkText {
-  color: #fff;
-}
-
-.navLinkText:hover {
-  color: gray;
-}
-
 /* Sidebar */
 .navbar-brand {
   font-weight: bold;
 }
 
 .side-navbar {
+  flex: 1;
+  flex-direction: row;
   width: 240px;
   height: 100%;
   position: absolute;
@@ -72,16 +60,16 @@ footer {
   transition: 0.5s;
 }
 
-.site-container {
-  transition: 0.4s;
-}
-
 .active-cont {
   margin-right: 240px;
 }
 
 .active-nav {
   right: 0;
+}
+
+.text-bold {
+  font-weight: bold;
 }
 
 .nav-text {

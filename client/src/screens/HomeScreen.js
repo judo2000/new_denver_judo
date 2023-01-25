@@ -28,7 +28,7 @@ const HomeScreen = () => {
 
       <section id="home-heading" className="my-4">
         <div className="text-center">
-          <h1 className="home-heading my-4 pt-2">
+          <h1 className="cap-heading my-4 pt-2">
             Train for competition or self defence at Denver Judo
           </h1>
         </div>
@@ -112,10 +112,8 @@ const HomeScreen = () => {
                 </Col>
                 <Col sm={12} md={6} className="ps-2 py-3">
                   <div className="ms-4">
-                    <h2 className="home-section-heading text-white">
-                      Jigoro Kano
-                    </h2>
-                    <span className="home-section-text text-white">
+                    <h2 className="section-heading text-white">Jigoro Kano</h2>
+                    <span className="section-text text-white">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Velit accusamus sequi doloremque. Aut, nesciunt quod.
                     </span>
@@ -125,10 +123,8 @@ const HomeScreen = () => {
               <Row className="py-5 ">
                 <Col sm={12} md={6} className="ps-2 py-3">
                   <div className="ms-4">
-                    <h2 className="home-section-heading text-white">
-                      Our Dojo
-                    </h2>
-                    <span className="home-section-text text-white">
+                    <h2 className="section-heading text-white">Our Dojo</h2>
+                    <span className="section-text text-white">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Velit accusamus sequi doloremque. Aut, nesciunt quod.
                     </span>

@@ -147,7 +147,7 @@ const HomeScreen = () => {
 
       <section id="faq" className="mx-4 px-4 py-4">
         <div>
-          <h2 className="home-sub-heading">Frequently Asked Questions</h2>
+          <h2 className="home-sub-heading py-4">Frequently Asked Questions</h2>
         </div>
         <FAQ />
       </section>

@@ -132,9 +132,16 @@ footer {
 
 .section-text {
   font-family: 'DM Sans';
-  font-size: 24px;
+  font-size: 16px;
   font-weight: 400;
-  line-height: 34px;
+  line-height: 24px;
+}
+
+.section-sub-text {
+  font-family: 'DM Sans';
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .home-section-text a {

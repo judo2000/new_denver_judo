@@ -12,7 +12,7 @@ const AboutScreen = () => {
       </Helmet>
 
       <section id="about-judo-heading" className="mt-4">
-        <div className="text-center">
+        <div className="cap-heading text-center">
           <h1>Judo is a martial art, olympic sport, and way of life. </h1>
         </div>
       </section>
@@ -90,17 +90,19 @@ const AboutScreen = () => {
       </section>
 
       <section id="senseis" className="px-4 mt-4 senseis">
-        <h2 className="ms-4 cap-heading pt-4">Meet Our Senseis</h2>
+        <h2 className="ms-4 cap-heading pt-4 text-white text-center">
+          Meet Our Senseis
+        </h2>
         <div className="py-4">
-          <Row>
-            <Col className="p-3 section-text text-white">
+          <Row className="justify-content-center">
+            <Col lg={10} className="p-3 section-text text-white">
               <img
                 className="p-2 home-about-img img-fluid responsive"
                 src="assets/img/ScottMooreProfileNew.png"
                 alt="Scott Moore"
-                style={{ float: 'left' }}
+                style={{ float: 'left', maxWidth: '184px', maxHeight: '250px' }}
               />
-              <b>Sensei Scott</b>
+              <b>Scott Moore</b>
               <br />
               <ReadMoreAndLess>
                 <p>
@@ -127,7 +129,7 @@ const AboutScreen = () => {
                   Scott became the head coach of Denver Judo in 1999. Expanding
                   the club to include classes for children, beginners and
                   competitive players, and opening classes to the visually
-                  impaired on a fully integrated basis,  Scott has lead Denver
+                  impaired on a fully integrated basis, Scott has lead Denver
                   Judo students to multiple medals at the national and
                   international level.
                 </p>
@@ -136,6 +138,279 @@ const AboutScreen = () => {
                   International “A” Level.
                 </p>
               </ReadMoreAndLess>
+            </Col>
+          </Row>
+          <div className="text-center">
+            <img src="assets/img/divider_white.png" alt="divider" />
+          </div>
+          <Row className="justify-content-center">
+            <Col lg={10} className="p-3 section-text text-white">
+              <img
+                className="p-2 home-about-img img-fluid responsive"
+                src="assets/img/HeidiMoore.png"
+                alt="Scott Moore"
+                style={{
+                  float: 'right',
+                  maxWidth: '184px',
+                  maxHeight: '250px',
+                }}
+              />
+              <b>Heidi Moore, LAT, ATC</b>
+              <br />
+              <ReadMoreAndLess>
+                <p>
+                  Heidi started judo in 1986 in Santa Monica, California. She
+                  currently holds the rank of rokudan, or 6th degree black belt.
+                  Heidi has had competitive success at every stage of her
+                  career, medaling multiple times at national tournaments at the
+                  junior, high school, collegiate, senior, and masters levels.
+                  She has won 11 medals at the USA Judo Senior National
+                  Championships. She represented the United States at the 2005
+                  and 2007 World Championships and at the 2005, 2007 and 2008
+                  Pan American Championships. She finished the 2007 Pan American
+                  Championships with a bronze medal.
+                </p>
+                <p>
+                  Heidi moved to Denver in 1999 and took over Denver Judo with
+                  her husband Scott. Through Scott, Heidi became involved in the
+                  US Paralympic judo program and has served as a coach for the
+                  national team many times, including serving as the assistant
+                  coach at the 2012 Paralympic Games in London, 2016 Paralympic
+                  Games in Rio de Janeiro, and the 2020ne Paralympics in Tokyo,
+                  Japan. Heidi serves as head instructor and executive director
+                  of Denver Judo and enjoys teaching the youth and senior
+                  competitive classes.
+                </p>
+                <p>
+                  Heidi is a Certified Athletic Trainer and an International “A”
+                  level coach with USA Judo, as well as current President of the
+                  Colorado Judo League.
+                </p>
+              </ReadMoreAndLess>
+            </Col>
+          </Row>
+          <div className="text-center">
+            <img src="assets/img/divider_white.png" alt="divider" />
+          </div>
+          <Row className="justify-content-center">
+            <Col className="p-3 section-text text-white">
+              <strong>Keith Lewis</strong>
+              <br />
+              <img
+                src="assets/img/keith.png"
+                alt="Keith Lewis"
+                style={{
+                  maxWidth: '184px',
+                  maxHeight: '250px',
+                }}
+              />
+              <br />
+              <ReadMoreAndLess>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Incidunt consectetur impedit, similique suscipit placeat odit
+                  error esse voluptatem magni veritatis! Voluptatibus iusto
+                  voluptas omnis illum quasi laboriosam sit dolorem esse
+                  repellat magnam provident alias, est vel ipsum odit inventore
+                  mollitia. Repellat quas doloremque veniam voluptatibus
+                  dignissimos molestias libero odio nisi.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
+                  perferendis eligendi consequuntur quaerat accusamus quisquam
+                  sequi nesciunt in, officia reprehenderit voluptatibus nisi,
+                  ratione tempora. Nulla, sed consequuntur autem nobis adipisci
+                  voluptatum velit, modi dolore aliquid tempore saepe pariatur
+                  accusantium blanditiis aut nesciunt! Error, earum!
+                </p>
+              </ReadMoreAndLess>
+            </Col>
+            <Col className="p-3 section-text text-white">
+              <strong>Alyssa Zawack</strong>
+              <br />
+              <img
+                src="assets/img/Kedge_Alyssa.png"
+                alt="Alyssa Zawack"
+                style={{ maxWidth: '184px', maxHeight: '250px' }}
+              />
+              <br />
+              <ReadMoreAndLess>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Incidunt consectetur impedit, similique suscipit placeat odit
+                  error esse voluptatem magni veritatis! Voluptatibus iusto
+                  voluptas omnis illum quasi laboriosam sit dolorem esse
+                  repellat magnam provident alias, est vel ipsum odit inventore
+                  mollitia. Repellat quas doloremque veniam voluptatibus
+                  dignissimos molestias libero odio nisi.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
+                  perferendis eligendi consequuntur quaerat accusamus quisquam
+                  sequi nesciunt in, officia reprehenderit voluptatibus nisi,
+                  ratione tempora. Nulla, sed consequuntur autem nobis adipisci
+                  voluptatum velit, modi dolore aliquid tempore saepe pariatur
+                  accusantium blanditiis aut nesciunt! Error, earum!
+                </p>
+              </ReadMoreAndLess>
+            </Col>
+            <Col className="p-3 section-text text-white">
+              <strong>Kedge Zawack</strong>
+              <br />
+              <img
+                src="assets/img/Kedge_Alyssa.png"
+                alt="Kedge Zawack"
+                style={{ maxWidth: '184px', maxHeight: '250px' }}
+              />
+              <br />
+              <ReadMoreAndLess>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Incidunt consectetur impedit, similique suscipit placeat odit
+                  error esse voluptatem magni veritatis! Voluptatibus iusto
+                  voluptas omnis illum quasi laboriosam sit dolorem esse
+                  repellat magnam provident alias, est vel ipsum odit inventore
+                  mollitia. Repellat quas doloremque veniam voluptatibus
+                  dignissimos molestias libero odio nisi.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
+                  perferendis eligendi consequuntur quaerat accusamus quisquam
+                  sequi nesciunt in, officia reprehenderit voluptatibus nisi,
+                  ratione tempora. Nulla, sed consequuntur autem nobis adipisci
+                  voluptatum velit, modi dolore aliquid tempore saepe pariatur
+                  accusantium blanditiis aut nesciunt! Error, earum!
+                </p>
+              </ReadMoreAndLess>
+            </Col>
+          </Row>
+          <Row className="d-flex justify-content-around">
+            <Col lg={4} className="p-3 section-text text-white">
+              <strong>Nikki Jones</strong>
+              <br />
+              <img
+                src="assets/img/Nikki_Jones.png"
+                alt="Nikki Jones"
+                style={{ maxWidth: '184px', maxHeight: '250px' }}
+              />
+              <br />
+              <ReadMoreAndLess>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Incidunt consectetur impedit, similique suscipit placeat odit
+                  error esse voluptatem magni veritatis! Voluptatibus iusto
+                  voluptas omnis illum quasi laboriosam sit dolorem esse
+                  repellat magnam provident alias, est vel ipsum odit inventore
+                  mollitia. Repellat quas doloremque veniam voluptatibus
+                  dignissimos molestias libero odio nisi.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
+                  perferendis eligendi consequuntur quaerat accusamus quisquam
+                  sequi nesciunt in, officia reprehenderit voluptatibus nisi,
+                  ratione tempora. Nulla, sed consequuntur autem nobis adipisci
+                  voluptatum velit, modi dolore aliquid tempore saepe pariatur
+                  accusantium blanditiis aut nesciunt! Error, earum!
+                </p>
+              </ReadMoreAndLess>
+            </Col>
+            <Col lg={4} className="p-3 section-text text-white">
+              <strong>Sophia Teissler</strong>
+              <br />
+              <img
+                src="assets/img/Sophia.png"
+                alt="Sophia Teissler"
+                style={{ maxWidth: '184px', maxHeight: '250px' }}
+              />
+              <br />
+              <ReadMoreAndLess>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Incidunt consectetur impedit, similique suscipit placeat odit
+                  error esse voluptatem magni veritatis! Voluptatibus iusto
+                  voluptas omnis illum quasi laboriosam sit dolorem esse
+                  repellat magnam provident alias, est vel ipsum odit inventore
+                  mollitia. Repellat quas doloremque veniam voluptatibus
+                  dignissimos molestias libero odio nisi.
+                </p>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                  Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
+                  perferendis eligendi consequuntur quaerat accusamus quisquam
+                  sequi nesciunt in, officia reprehenderit voluptatibus nisi,
+                  ratione tempora. Nulla, sed consequuntur autem nobis adipisci
+                  voluptatum velit, modi dolore aliquid tempore saepe pariatur
+                  accusantium blanditiis aut nesciunt! Error, earum!
+                </p>
+              </ReadMoreAndLess>
+            </Col>
+          </Row>
+          <div className="text-center">
+            <img src="assets/img/divider_white.png" alt="divider" />
+          </div>
+          <h2 className="ms-4 cap-heading pt-4 text-white text-center">
+            Other Yudansha
+          </h2>
+          <Row className="d-flex justify-content-center">
+            <Col lg={2} className="p-3 section-sub-text text-white">
+              <strong>Jim Carmer</strong>
+              <br />
+              5th degree black belt Jessica
+              <br />
+              <br />
+              <strong>Tracy Crawford</strong>
+              <br />
+              5th degree black belt
+              <br />
+              <br />
+              <strong>Jessica Lockfeld</strong>
+              <br />
+              4th degree black belt
+              <br />
+              <br />
+              <strong>Megan Post</strong>
+              <br />
+              3rd degree black belt
+            </Col>
+            <Col lg={2} className="p-3 section-sub-text text-white">
+              <strong>Dave Wises</strong>
+              <br /> 2nd degree black belt
+              <br />
+              <br />
+              <strong>Ryan Joness</strong>
+              <br /> 2nd degree black belt
+              <br />
+              <br />
+              <strong>Jason Falcones</strong>
+              <br /> 2nd degree black belt
+            </Col>
+            <Col lg={2} className="p-3 section-sub-text text-white">
+              <strong>Steeve Alvaro</strong>
+              <br /> 2nd degree black belt
+              <br />
+              <br />
+              <strong>Carlos Rivera</strong>
+              <br /> 1st degree black belt
+              <br />
+              <br />
+              <strong>Hisashi Araya-Kjeseth</strong>
+              <br /> 1st degree black belt
+            </Col>
+            <Col lg={2} className="p-3 section-sub-text text-white">
+              <strong>Nobuo Yagai</strong>
+              <br /> 1st degree black belt
+              <br />
+              <br />
+              <strong>Garmaa Shinebayar</strong>
+              <br /> 1st degree black belt
+              <br />
+              <br />
+              <strong>Jeremy Goodwin 1st</strong>
+              <br /> degree black belt
             </Col>
           </Row>
         </div>

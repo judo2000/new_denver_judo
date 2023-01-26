@@ -197,7 +197,7 @@ const AboutScreen = () => {
               <strong>Keith Lewis</strong>
               <br />
               <img
-                src="assets/img/keith.png"
+                src="assets/img/Keith.png"
                 alt="Keith Lewis"
                 style={{
                   maxWidth: '184px',

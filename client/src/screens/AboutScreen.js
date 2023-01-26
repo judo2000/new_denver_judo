@@ -3,6 +3,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Helmet } from 'react-helmet-async';
 import ReadMoreAndLess from '../components/ReadMoreAndLess';
+import GMap from '../components/Map';
 
 const AboutScreen = () => {
   return (
@@ -31,12 +32,10 @@ const AboutScreen = () => {
                     />
                   </div>
                 </Col>
-                <Col sm={12} md={6} className="ps-2 py-3">
+                <Col sm={12} md={6} className="ps-2 py-3 section-text">
                   <div className="ms-4">
-                    <h2 className="section-heading text-black">
-                      The Gentle Way
-                    </h2>
-                    <span className="section-text text-black">
+                    <h2 className="section-heading ">The Gentle Way</h2>
+                    <span className="">
                       <p>
                         Created in 1882 by Jigoro Kano, Judo Lorem ipsum dolor
                         sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -55,11 +54,11 @@ const AboutScreen = () => {
                   </div>
                 </Col>
               </Row>
-              <Row className="py-5 ">
-                <Col sm={12} md={6} className="ps-2 py-3">
+              <Row className="pt-5 ">
+                <Col sm={12} md={6} className="ps-2 py-3 section-text">
                   <div className="ms-4">
-                    <h2 className="section-heading text-black">Our Club</h2>
-                    <span className="section-text text-black">
+                    <h2 className="section-heading ">Our Club</h2>
+                    <span className="">
                       <p>
                         For more than 20 years, Denver Judo has been the premier
                         training club for competitive and recreational judoka.
@@ -80,6 +79,7 @@ const AboutScreen = () => {
                       className="home-about-img img-fluid responsive"
                       src="assets/img/2016-Black-Belts-1024x731.png"
                       alt="Kano"
+                      style={{ width: '300px', height: '214px' }}
                     />
                   </div>
                 </Col>
@@ -89,13 +89,14 @@ const AboutScreen = () => {
         </div>
       </section>
 
-      <section id="senseis" className="px-4 mt-4 senseis">
-        <h2 className="ms-4 cap-heading pt-4 text-white text-center">
-          Meet Our Senseis
-        </h2>
-        <div className="py-4">
+      <section
+        id="senseis"
+        className="px-4 pt-3 mb-4 senseis section-text text-white"
+      >
+        <h2 className="cap-heading text-center">Meet Our Senseis</h2>
+        <div className="pb-4">
           <Row className="justify-content-center">
-            <Col lg={10} className="p-3 section-text text-white">
+            <Col lg={10} className="p-3 ">
               <img
                 className="p-2 home-about-img img-fluid responsive"
                 src="assets/img/ScottMooreProfileNew.png"
@@ -144,7 +145,7 @@ const AboutScreen = () => {
             <img src="assets/img/divider_white.png" alt="divider" />
           </div>
           <Row className="justify-content-center">
-            <Col lg={10} className="p-3 section-text text-white">
+            <Col lg={10} className="p-3 ">
               <img
                 className="p-2 home-about-img img-fluid responsive"
                 src="assets/img/HeidiMoore.png"
@@ -192,8 +193,8 @@ const AboutScreen = () => {
           <div className="text-center">
             <img src="assets/img/divider_white.png" alt="divider" />
           </div>
-          <Row className="justify-content-center">
-            <Col className="p-3 section-text text-white">
+          <Row className="d-flex justify-content-around">
+            <Col lg={3} className="p-3">
               <strong>Keith Lewis</strong>
               <br />
               <img
@@ -226,7 +227,7 @@ const AboutScreen = () => {
                 </p>
               </ReadMoreAndLess>
             </Col>
-            <Col className="p-3 section-text text-white">
+            <Col lg={3} className="p-3">
               <strong>Alyssa Zawack</strong>
               <br />
               <img
@@ -256,7 +257,7 @@ const AboutScreen = () => {
                 </p>
               </ReadMoreAndLess>
             </Col>
-            <Col className="p-3 section-text text-white">
+            <Col lg={3} className="p-3">
               <strong>Kedge Zawack</strong>
               <br />
               <img
@@ -288,7 +289,7 @@ const AboutScreen = () => {
             </Col>
           </Row>
           <Row className="d-flex justify-content-around">
-            <Col lg={4} className="p-3 section-text text-white">
+            <Col lg={4} className="p-3">
               <strong>Nikki Jones</strong>
               <br />
               <img
@@ -318,7 +319,7 @@ const AboutScreen = () => {
                 </p>
               </ReadMoreAndLess>
             </Col>
-            <Col lg={4} className="p-3 section-text text-white">
+            <Col lg={4} className="p-3">
               <strong>Sophia Teissler</strong>
               <br />
               <img
@@ -352,14 +353,12 @@ const AboutScreen = () => {
           <div className="text-center">
             <img src="assets/img/divider_white.png" alt="divider" />
           </div>
-          <h2 className="ms-4 cap-heading pt-4 text-white text-center">
-            Other Yudansha
-          </h2>
-          <Row className="d-flex justify-content-center">
-            <Col lg={2} className="p-3 section-sub-text text-white">
+          <h2 className="ms-4 cap-heading pt-4text-center">Other Yudansha</h2>
+          <Row className="d-flex justify-content-center section-sub-text">
+            <Col lg={2} className="p-3">
               <strong>Jim Carmer</strong>
               <br />
-              5th degree black belt Jessica
+              5th degree black belt
               <br />
               <br />
               <strong>Tracy Crawford</strong>
@@ -414,6 +413,12 @@ const AboutScreen = () => {
             </Col>
           </Row>
         </div>
+      </section>
+
+      <section id="map" className="mx-4 px-4">
+        <h2>Our Location</h2>
+        We are located at 719 Mariposa St, Denver, CO 80204
+        <GMap />
       </section>
     </div>
   );

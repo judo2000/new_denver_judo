@@ -1,16 +1,25 @@
-const { Content } = require('../models');
+const { Content, Instructor } = require('../models');
 const resolvers = {
   Query: {
-    content: async (parent, { page, section }) => {
-      let content = await Content.findOne({ page: page, section: section });
-      return content;
+    // content: async (parent, { page, section }) => {
+    //   let content = await Content.findOne({ page: page, section: section });
+    //   return content;
+    // },
+    headInstructors: async (parent, { instructorType }) => {
+      let headInstructors = await Instructor.find({
+        instructorType: 'headInstructor',
+      });
+      return headInstructors;
     },
   },
   Mutation: {
-    addContent: async (parent, args) => {
-      console.log(args);
-      const content = await Content.create(args);
-      return content;
+    // addContent: async (parent, args) => {
+    //   const content = await Content.create(args);
+    //   return content;
+    // },
+    addInstructor: async (parent, args) => {
+      const instructor = await Instructor.create(args);
+      return instructor;
     },
   },
 };

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 
 const ReadMoreAndLess = ({ children }) => {
   const [isReadMoreShown, setIsReadMoreShown] = useState(false);
-  console.log(children[0].props.children);
   const toggleShow = () => {
     setIsReadMoreShown((prevState) => !prevState);
   };

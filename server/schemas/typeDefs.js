@@ -1,24 +1,27 @@
 const { gql } = require('apollo-server-express');
 const typeDefs = gql`
-  type Content {
+  type Instructor {
     _id: ID
-    page: String!
-    section: String!
-    sectionHeading: String
-    sectionContent: String!
+    instructorType: String!
+    instructorName: String!
+    instructorRank: String!
+    instructorImage: String
+    instructorBio: String!
   }
 
   type Query {
-    content(page: String): Content
+    instructors: [Instructor!]!
+    headInstructors(instructorType: String!): [Instructor!]
   }
 
   type Mutation {
-    addContent(
-      page: String!
-      section: String!
-      sectionHeading: String
-      sectionContent: String!
-    ): Content
+    addInstructor(
+      instructorType: String!
+      instructorName: String!
+      instructorRank: String!
+      instructorImage: String
+      instructorBio: String!
+    ): Instructor
   }
 `;
 

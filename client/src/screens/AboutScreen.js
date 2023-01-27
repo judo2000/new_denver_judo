@@ -1,12 +1,29 @@
 import React from 'react';
+import { useQuery } from '@apollo/client';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Helmet } from 'react-helmet-async';
-import ReadMoreAndLess from '../components/ReadMoreAndLess';
+import ReactReadMoreReadLess from 'react-read-more-read-less';
 import GMap from '../components/Map';
+import { GET_HEAD_INSTRUCTORS } from '../utils/queries';
 
 const AboutScreen = () => {
-  return (
+  const { loading, data } = useQuery(GET_HEAD_INSTRUCTORS, {
+    variables: { instructorType: 'headInstructor' },
+  });
+
+  const headInstData = data?.headInstructors || {};
+
+  console.log(headInstData);
+  loading
+    ? console.log('loading...')
+    : headInstData.map((h) => console.log(h.instructorName));
+  //const senseiData = data?.content || {};
+
+  //console.log(senseiData);
+  return loading ? (
+    'loading...'
+  ) : (
     <div>
       <Helmet>
         <title>About</title>
@@ -95,6 +112,24 @@ const AboutScreen = () => {
       >
         <h2 className="cap-heading text-center">Meet Our Senseis</h2>
         <div className="pb-4">
+          {headInstData.map((inst, index) => (
+            <Row key={inst._id} className="justify-content-center">
+              <Col lg={10} className="p-3 ">
+                <img
+                  className="p-2 home-about-img img-fluid responsive"
+                  src={`assets/img/${inst.instructorImage}`}
+                  alt={inst.instructorName}
+                  style={{
+                    float: `${index % 2 === 0 ? 'left' : 'right'}`,
+                    maxWidth: '184px',
+                    maxHeight: '250px',
+                  }}
+                />
+                {inst.instructorName}
+                <br />
+              </Col>
+            </Row>
+          ))}
           <Row className="justify-content-center">
             <Col lg={10} className="p-3 ">
               <img
@@ -105,40 +140,38 @@ const AboutScreen = () => {
               />
               <b>Scott Moore</b>
               <br />
-              <ReadMoreAndLess>
-                <p>
-                  Scott Moore began judo in 1988 under Sensei Connie Lavergne in
-                  Lafayette, Louisiana and currently holds the rank of rokudan,
-                  or 6th degree black belt. He is the first American to win a
-                  gold medal in the Paralympic Games in 2000.
-                </p>
-                <p>
-                  He also won bronze medals in the 1996 and 2004 Paralympic
-                  Games. In addition, he was the IBSA World Judo Champion in
-                  1998 and won a pair of World Championship bronze medals in
-                  1995 and 2002. In 2007 Scott retired from competition and was
-                  selected as the assistant coach for the 2008 Paralympic Team.
-                  In 2009 he became the head coach for the national visually
-                  impaired program and served as the head coach for the US
-                  Paralympic Judo team at the 2012 Paralympic Games in London,
-                  England, 2016 Paralympic Games in Rio de Janeiro, Brazil, and
-                  the 2020 Paralympics in Tokyo, Japan. In 2009, Scott was
-                  selected by the US Olympic Committee as the Paralympic Coach
-                  of the Year.
-                </p>
-                <p>
-                  Scott became the head coach of Denver Judo in 1999. Expanding
-                  the club to include classes for children, beginners and
-                  competitive players, and opening classes to the visually
-                  impaired on a fully integrated basis, Scott has lead Denver
-                  Judo students to multiple medals at the national and
-                  international level.
-                </p>
-                <p>
-                  Scott is also a certified coach with USA Judo at the
-                  International “A” Level.
-                </p>
-              </ReadMoreAndLess>
+
+              <p>
+                Scott Moore began judo in 1988 under Sensei Connie Lavergne in
+                Lafayette, Louisiana and currently holds the rank of rokudan, or
+                6th degree black belt. He is the first American to win a gold
+                medal in the Paralympic Games in 2000.
+              </p>
+              <p>
+                He also won bronze medals in the 1996 and 2004 Paralympic Games.
+                In addition, he was the IBSA World Judo Champion in 1998 and won
+                a pair of World Championship bronze medals in 1995 and 2002. In
+                2007 Scott retired from competition and was selected as the
+                assistant coach for the 2008 Paralympic Team. In 2009 he became
+                the head coach for the national visually impaired program and
+                served as the head coach for the US Paralympic Judo team at the
+                2012 Paralympic Games in London, England, 2016 Paralympic Games
+                in Rio de Janeiro, Brazil, and the 2020 Paralympics in Tokyo,
+                Japan. In 2009, Scott was selected by the US Olympic Committee
+                as the Paralympic Coach of the Year.
+              </p>
+              <p>
+                Scott became the head coach of Denver Judo in 1999. Expanding
+                the club to include classes for children, beginners and
+                competitive players, and opening classes to the visually
+                impaired on a fully integrated basis, Scott has lead Denver Judo
+                students to multiple medals at the national and international
+                level.
+              </p>
+              <p>
+                Scott is also a certified coach with USA Judo at the
+                International “A” Level.
+              </p>
             </Col>
           </Row>
           <div className="text-center">
@@ -158,36 +191,35 @@ const AboutScreen = () => {
               />
               <b>Heidi Moore, LAT, ATC</b>
               <br />
-              <ReadMoreAndLess>
-                <p>
-                  Heidi started judo in 1986 in Santa Monica, California. She
-                  currently holds the rank of rokudan, or 6th degree black belt.
-                  Heidi has had competitive success at every stage of her
-                  career, medaling multiple times at national tournaments at the
-                  junior, high school, collegiate, senior, and masters levels.
-                  She has won 11 medals at the USA Judo Senior National
-                  Championships. She represented the United States at the 2005
-                  and 2007 World Championships and at the 2005, 2007 and 2008
-                  Pan American Championships. She finished the 2007 Pan American
-                  Championships with a bronze medal.
-                </p>
-                <p>
-                  Heidi moved to Denver in 1999 and took over Denver Judo with
-                  her husband Scott. Through Scott, Heidi became involved in the
-                  US Paralympic judo program and has served as a coach for the
-                  national team many times, including serving as the assistant
-                  coach at the 2012 Paralympic Games in London, 2016 Paralympic
-                  Games in Rio de Janeiro, and the 2020ne Paralympics in Tokyo,
-                  Japan. Heidi serves as head instructor and executive director
-                  of Denver Judo and enjoys teaching the youth and senior
-                  competitive classes.
-                </p>
-                <p>
-                  Heidi is a Certified Athletic Trainer and an International “A”
-                  level coach with USA Judo, as well as current President of the
-                  Colorado Judo League.
-                </p>
-              </ReadMoreAndLess>
+
+              <p>
+                Heidi started judo in 1986 in Santa Monica, California. She
+                currently holds the rank of rokudan, or 6th degree black belt.
+                Heidi has had competitive success at every stage of her career,
+                medaling multiple times at national tournaments at the junior,
+                high school, collegiate, senior, and masters levels. She has won
+                11 medals at the USA Judo Senior National Championships. She
+                represented the United States at the 2005 and 2007 World
+                Championships and at the 2005, 2007 and 2008 Pan American
+                Championships. She finished the 2007 Pan American Championships
+                with a bronze medal.
+              </p>
+              <p>
+                Heidi moved to Denver in 1999 and took over Denver Judo with her
+                husband Scott. Through Scott, Heidi became involved in the US
+                Paralympic judo program and has served as a coach for the
+                national team many times, including serving as the assistant
+                coach at the 2012 Paralympic Games in London, 2016 Paralympic
+                Games in Rio de Janeiro, and the 2020ne Paralympics in Tokyo,
+                Japan. Heidi serves as head instructor and executive director of
+                Denver Judo and enjoys teaching the youth and senior competitive
+                classes.
+              </p>
+              <p>
+                Heidi is a Certified Athletic Trainer and an International “A”
+                level coach with USA Judo, as well as current President of the
+                Colorado Judo League.
+              </p>
             </Col>
           </Row>
           <div className="text-center">
@@ -206,26 +238,25 @@ const AboutScreen = () => {
                 }}
               />
               <br />
-              <ReadMoreAndLess>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Incidunt consectetur impedit, similique suscipit placeat odit
-                  error esse voluptatem magni veritatis! Voluptatibus iusto
-                  voluptas omnis illum quasi laboriosam sit dolorem esse
-                  repellat magnam provident alias, est vel ipsum odit inventore
-                  mollitia. Repellat quas doloremque veniam voluptatibus
-                  dignissimos molestias libero odio nisi.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
-                  perferendis eligendi consequuntur quaerat accusamus quisquam
-                  sequi nesciunt in, officia reprehenderit voluptatibus nisi,
-                  ratione tempora. Nulla, sed consequuntur autem nobis adipisci
-                  voluptatum velit, modi dolore aliquid tempore saepe pariatur
-                  accusantium blanditiis aut nesciunt! Error, earum!
-                </p>
-              </ReadMoreAndLess>
+
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Incidunt consectetur impedit, similique suscipit placeat odit
+                error esse voluptatem magni veritatis! Voluptatibus iusto
+                voluptas omnis illum quasi laboriosam sit dolorem esse repellat
+                magnam provident alias, est vel ipsum odit inventore mollitia.
+                Repellat quas doloremque veniam voluptatibus dignissimos
+                molestias libero odio nisi.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
+                perferendis eligendi consequuntur quaerat accusamus quisquam
+                sequi nesciunt in, officia reprehenderit voluptatibus nisi,
+                ratione tempora. Nulla, sed consequuntur autem nobis adipisci
+                voluptatum velit, modi dolore aliquid tempore saepe pariatur
+                accusantium blanditiis aut nesciunt! Error, earum!
+              </p>
             </Col>
             <Col lg={3} className="p-3">
               <strong>Alyssa Zawack</strong>
@@ -236,26 +267,25 @@ const AboutScreen = () => {
                 style={{ maxWidth: '184px', maxHeight: '250px' }}
               />
               <br />
-              <ReadMoreAndLess>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Incidunt consectetur impedit, similique suscipit placeat odit
-                  error esse voluptatem magni veritatis! Voluptatibus iusto
-                  voluptas omnis illum quasi laboriosam sit dolorem esse
-                  repellat magnam provident alias, est vel ipsum odit inventore
-                  mollitia. Repellat quas doloremque veniam voluptatibus
-                  dignissimos molestias libero odio nisi.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
-                  perferendis eligendi consequuntur quaerat accusamus quisquam
-                  sequi nesciunt in, officia reprehenderit voluptatibus nisi,
-                  ratione tempora. Nulla, sed consequuntur autem nobis adipisci
-                  voluptatum velit, modi dolore aliquid tempore saepe pariatur
-                  accusantium blanditiis aut nesciunt! Error, earum!
-                </p>
-              </ReadMoreAndLess>
+
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Incidunt consectetur impedit, similique suscipit placeat odit
+                error esse voluptatem magni veritatis! Voluptatibus iusto
+                voluptas omnis illum quasi laboriosam sit dolorem esse repellat
+                magnam provident alias, est vel ipsum odit inventore mollitia.
+                Repellat quas doloremque veniam voluptatibus dignissimos
+                molestias libero odio nisi.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
+                perferendis eligendi consequuntur quaerat accusamus quisquam
+                sequi nesciunt in, officia reprehenderit voluptatibus nisi,
+                ratione tempora. Nulla, sed consequuntur autem nobis adipisci
+                voluptatum velit, modi dolore aliquid tempore saepe pariatur
+                accusantium blanditiis aut nesciunt! Error, earum!
+              </p>
             </Col>
             <Col lg={3} className="p-3">
               <strong>Kedge Zawack</strong>
@@ -266,26 +296,25 @@ const AboutScreen = () => {
                 style={{ maxWidth: '184px', maxHeight: '250px' }}
               />
               <br />
-              <ReadMoreAndLess>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Incidunt consectetur impedit, similique suscipit placeat odit
-                  error esse voluptatem magni veritatis! Voluptatibus iusto
-                  voluptas omnis illum quasi laboriosam sit dolorem esse
-                  repellat magnam provident alias, est vel ipsum odit inventore
-                  mollitia. Repellat quas doloremque veniam voluptatibus
-                  dignissimos molestias libero odio nisi.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
-                  perferendis eligendi consequuntur quaerat accusamus quisquam
-                  sequi nesciunt in, officia reprehenderit voluptatibus nisi,
-                  ratione tempora. Nulla, sed consequuntur autem nobis adipisci
-                  voluptatum velit, modi dolore aliquid tempore saepe pariatur
-                  accusantium blanditiis aut nesciunt! Error, earum!
-                </p>
-              </ReadMoreAndLess>
+
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Incidunt consectetur impedit, similique suscipit placeat odit
+                error esse voluptatem magni veritatis! Voluptatibus iusto
+                voluptas omnis illum quasi laboriosam sit dolorem esse repellat
+                magnam provident alias, est vel ipsum odit inventore mollitia.
+                Repellat quas doloremque veniam voluptatibus dignissimos
+                molestias libero odio nisi.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
+                perferendis eligendi consequuntur quaerat accusamus quisquam
+                sequi nesciunt in, officia reprehenderit voluptatibus nisi,
+                ratione tempora. Nulla, sed consequuntur autem nobis adipisci
+                voluptatum velit, modi dolore aliquid tempore saepe pariatur
+                accusantium blanditiis aut nesciunt! Error, earum!
+              </p>
             </Col>
           </Row>
           <Row className="d-flex justify-content-around">
@@ -298,26 +327,25 @@ const AboutScreen = () => {
                 style={{ maxWidth: '184px', maxHeight: '250px' }}
               />
               <br />
-              <ReadMoreAndLess>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Incidunt consectetur impedit, similique suscipit placeat odit
-                  error esse voluptatem magni veritatis! Voluptatibus iusto
-                  voluptas omnis illum quasi laboriosam sit dolorem esse
-                  repellat magnam provident alias, est vel ipsum odit inventore
-                  mollitia. Repellat quas doloremque veniam voluptatibus
-                  dignissimos molestias libero odio nisi.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
-                  perferendis eligendi consequuntur quaerat accusamus quisquam
-                  sequi nesciunt in, officia reprehenderit voluptatibus nisi,
-                  ratione tempora. Nulla, sed consequuntur autem nobis adipisci
-                  voluptatum velit, modi dolore aliquid tempore saepe pariatur
-                  accusantium blanditiis aut nesciunt! Error, earum!
-                </p>
-              </ReadMoreAndLess>
+
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Incidunt consectetur impedit, similique suscipit placeat odit
+                error esse voluptatem magni veritatis! Voluptatibus iusto
+                voluptas omnis illum quasi laboriosam sit dolorem esse repellat
+                magnam provident alias, est vel ipsum odit inventore mollitia.
+                Repellat quas doloremque veniam voluptatibus dignissimos
+                molestias libero odio nisi.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
+                perferendis eligendi consequuntur quaerat accusamus quisquam
+                sequi nesciunt in, officia reprehenderit voluptatibus nisi,
+                ratione tempora. Nulla, sed consequuntur autem nobis adipisci
+                voluptatum velit, modi dolore aliquid tempore saepe pariatur
+                accusantium blanditiis aut nesciunt! Error, earum!
+              </p>
             </Col>
             <Col lg={4} className="p-3">
               <strong>Sophia Teissler</strong>
@@ -328,26 +356,25 @@ const AboutScreen = () => {
                 style={{ maxWidth: '184px', maxHeight: '250px' }}
               />
               <br />
-              <ReadMoreAndLess>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Incidunt consectetur impedit, similique suscipit placeat odit
-                  error esse voluptatem magni veritatis! Voluptatibus iusto
-                  voluptas omnis illum quasi laboriosam sit dolorem esse
-                  repellat magnam provident alias, est vel ipsum odit inventore
-                  mollitia. Repellat quas doloremque veniam voluptatibus
-                  dignissimos molestias libero odio nisi.
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
-                  perferendis eligendi consequuntur quaerat accusamus quisquam
-                  sequi nesciunt in, officia reprehenderit voluptatibus nisi,
-                  ratione tempora. Nulla, sed consequuntur autem nobis adipisci
-                  voluptatum velit, modi dolore aliquid tempore saepe pariatur
-                  accusantium blanditiis aut nesciunt! Error, earum!
-                </p>
-              </ReadMoreAndLess>
+
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Incidunt consectetur impedit, similique suscipit placeat odit
+                error esse voluptatem magni veritatis! Voluptatibus iusto
+                voluptas omnis illum quasi laboriosam sit dolorem esse repellat
+                magnam provident alias, est vel ipsum odit inventore mollitia.
+                Repellat quas doloremque veniam voluptatibus dignissimos
+                molestias libero odio nisi.
+              </p>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
+                perferendis eligendi consequuntur quaerat accusamus quisquam
+                sequi nesciunt in, officia reprehenderit voluptatibus nisi,
+                ratione tempora. Nulla, sed consequuntur autem nobis adipisci
+                voluptatum velit, modi dolore aliquid tempore saepe pariatur
+                accusantium blanditiis aut nesciunt! Error, earum!
+              </p>
             </Col>
           </Row>
           <div className="text-center">

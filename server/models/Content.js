@@ -9,10 +9,14 @@ const contentSchema = new Schema({
     type: String,
     required: true,
   },
-  sectionHeading: {
+  contentType: {
+    type: String,
+    required: true,
+  },
+  contentHead: {
     type: String,
   },
-  sectionContent: {
+  contentText: {
     type: String,
     required: true,
   },

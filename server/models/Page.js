@@ -12,7 +12,10 @@ const pageSchema = new Schema({
   sectionHeading: {
     type: String,
   },
-  content: {
+  sectionSubHeading: {
+    type: String,
+  },
+  sectionContent: {
     type: String,
     required: true,
   },

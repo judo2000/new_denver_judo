@@ -11,7 +11,7 @@ import AboutScreen from './screens/AboutScreen';
 
 // Construct main GraphQL API endpoint
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: 'http://localhost:5000/graphql',
   cache: new InMemoryCache(),
 });
 function App() {
@@ -122,12 +122,10 @@ function App() {
             </Nav>
           </div>
           <main>
-            <Container>
-              <Routes>
-                <Route path="/" element={<HomeScreen />} />
-                <Route path="/about" element={<AboutScreen />} />
-              </Routes>
-            </Container>
+            <Routes>
+              <Route path="/" element={<HomeScreen />} />
+              <Route path="/about" element={<AboutScreen />} />
+            </Routes>
           </main>
           <footer>
             <div className="text-center">

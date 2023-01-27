@@ -90,7 +90,7 @@ const HomeScreen = () => {
           <div
             dangerouslySetInnerHTML={{
               __html:
-                "<iframe id='idZenPlannerFrame' style='width: 80%; height: 500px; ' src='https://denverjudo.zenplanner.com/zenplanner/portal/freeTrial.cfm?type=FreeTrial&FRAME=true' />",
+                "<iframe id='idZenPlannerFrame' className='zenFrame' style='width: 80%; height: 500px; ' src='https://denverjudo.zenplanner.com/zenplanner/portal/freeTrial.cfm?type=FreeTrial&FRAME=true' />",
             }}
           />
         </div>

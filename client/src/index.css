@@ -20,6 +20,27 @@ body {
   min-height: 100vh;
   transition: 0.4s;
 }
+pre,
+code {
+  width: 80%;
+  white-space: pre-line;
+  font-family: 'DM Sans';
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.text {
+  width: 80%;
+}
+.less {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
 
 main {
   flex: 1;

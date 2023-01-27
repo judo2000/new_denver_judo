@@ -3,7 +3,8 @@ import { useQuery } from '@apollo/client';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { Helmet } from 'react-helmet-async';
-import ReactReadMoreReadLess from 'react-read-more-read-less';
+import parse from 'html-react-parser';
+import MoreLessText from '../components/MoreLessText';
 import GMap from '../components/Map';
 import { GET_HEAD_INSTRUCTORS } from '../utils/queries';
 
@@ -14,7 +15,6 @@ const AboutScreen = () => {
 
   const headInstData = data?.headInstructors || {};
 
-  console.log(headInstData);
   loading
     ? console.log('loading...')
     : headInstData.map((h) => console.log(h.instructorName));
@@ -113,115 +113,30 @@ const AboutScreen = () => {
         <h2 className="cap-heading text-center">Meet Our Senseis</h2>
         <div className="pb-4">
           {headInstData.map((inst, index) => (
-            <Row key={inst._id} className="justify-content-center">
-              <Col lg={10} className="p-3 ">
-                <img
-                  className="p-2 home-about-img img-fluid responsive"
-                  src={`assets/img/${inst.instructorImage}`}
-                  alt={inst.instructorName}
-                  style={{
-                    float: `${index % 2 === 0 ? 'left' : 'right'}`,
-                    maxWidth: '184px',
-                    maxHeight: '250px',
-                  }}
-                />
-                {inst.instructorName}
-                <br />
-              </Col>
-            </Row>
+            <div>
+              <Row key={inst._id} className="justify-content-center">
+                <Col lg={10} className="p-3 ">
+                  <img
+                    className="p-2 home-about-img img-fluid responsive"
+                    src={`assets/img/${inst.instructorImage}`}
+                    alt={inst.instructorName}
+                    style={{
+                      float: `${index % 2 === 0 ? 'left' : 'right'}`,
+                      maxWidth: '184px',
+                      maxHeight: '250px',
+                    }}
+                  />
+                  {inst.instructorName}
+                  <br />
+                  <MoreLessText>{parse(inst.instructorBio)}</MoreLessText>
+                </Col>
+              </Row>
+              <div className="text-center">
+                <img src="assets/img/divider_white.png" alt="divider" />
+              </div>
+            </div>
           ))}
-          <Row className="justify-content-center">
-            <Col lg={10} className="p-3 ">
-              <img
-                className="p-2 home-about-img img-fluid responsive"
-                src="assets/img/ScottMooreProfileNew.png"
-                alt="Scott Moore"
-                style={{ float: 'left', maxWidth: '184px', maxHeight: '250px' }}
-              />
-              <b>Scott Moore</b>
-              <br />
 
-              <p>
-                Scott Moore began judo in 1988 under Sensei Connie Lavergne in
-                Lafayette, Louisiana and currently holds the rank of rokudan, or
-                6th degree black belt. He is the first American to win a gold
-                medal in the Paralympic Games in 2000.
-              </p>
-              <p>
-                He also won bronze medals in the 1996 and 2004 Paralympic Games.
-                In addition, he was the IBSA World Judo Champion in 1998 and won
-                a pair of World Championship bronze medals in 1995 and 2002. In
-                2007 Scott retired from competition and was selected as the
-                assistant coach for the 2008 Paralympic Team. In 2009 he became
-                the head coach for the national visually impaired program and
-                served as the head coach for the US Paralympic Judo team at the
-                2012 Paralympic Games in London, England, 2016 Paralympic Games
-                in Rio de Janeiro, Brazil, and the 2020 Paralympics in Tokyo,
-                Japan. In 2009, Scott was selected by the US Olympic Committee
-                as the Paralympic Coach of the Year.
-              </p>
-              <p>
-                Scott became the head coach of Denver Judo in 1999. Expanding
-                the club to include classes for children, beginners and
-                competitive players, and opening classes to the visually
-                impaired on a fully integrated basis, Scott has lead Denver Judo
-                students to multiple medals at the national and international
-                level.
-              </p>
-              <p>
-                Scott is also a certified coach with USA Judo at the
-                International “A” Level.
-              </p>
-            </Col>
-          </Row>
-          <div className="text-center">
-            <img src="assets/img/divider_white.png" alt="divider" />
-          </div>
-          <Row className="justify-content-center">
-            <Col lg={10} className="p-3 ">
-              <img
-                className="p-2 home-about-img img-fluid responsive"
-                src="assets/img/HeidiMoore.png"
-                alt="Scott Moore"
-                style={{
-                  float: 'right',
-                  maxWidth: '184px',
-                  maxHeight: '250px',
-                }}
-              />
-              <b>Heidi Moore, LAT, ATC</b>
-              <br />
-
-              <p>
-                Heidi started judo in 1986 in Santa Monica, California. She
-                currently holds the rank of rokudan, or 6th degree black belt.
-                Heidi has had competitive success at every stage of her career,
-                medaling multiple times at national tournaments at the junior,
-                high school, collegiate, senior, and masters levels. She has won
-                11 medals at the USA Judo Senior National Championships. She
-                represented the United States at the 2005 and 2007 World
-                Championships and at the 2005, 2007 and 2008 Pan American
-                Championships. She finished the 2007 Pan American Championships
-                with a bronze medal.
-              </p>
-              <p>
-                Heidi moved to Denver in 1999 and took over Denver Judo with her
-                husband Scott. Through Scott, Heidi became involved in the US
-                Paralympic judo program and has served as a coach for the
-                national team many times, including serving as the assistant
-                coach at the 2012 Paralympic Games in London, 2016 Paralympic
-                Games in Rio de Janeiro, and the 2020ne Paralympics in Tokyo,
-                Japan. Heidi serves as head instructor and executive director of
-                Denver Judo and enjoys teaching the youth and senior competitive
-                classes.
-              </p>
-              <p>
-                Heidi is a Certified Athletic Trainer and an International “A”
-                level coach with USA Judo, as well as current President of the
-                Colorado Judo League.
-              </p>
-            </Col>
-          </Row>
           <div className="text-center">
             <img src="assets/img/divider_white.png" alt="divider" />
           </div>

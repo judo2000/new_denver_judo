@@ -1,10 +1,14 @@
 const { Content, Instructor } = require('../models');
 const resolvers = {
   Query: {
-    // content: async (parent, { page, section }) => {
-    //   let content = await Content.findOne({ page: page, section: section });
-    //   return content;
-    // },
+    contents: async (parent, { page, section }) => {
+      const contents = await Content.find({});
+      return contents;
+    },
+    contentById: async (parent, { _id }) => {
+      const content = await Content.findById(_id);
+      return content;
+    },
     ourDojo: async (parent, { page, section }) => {
       const ourDojo = await Content.find({
         page: 'home',
@@ -28,14 +32,15 @@ const resolvers = {
       const instructor = await Instructor.create(args);
       return instructor;
     },
-    updateOurDojo: async (parent, { contentText }) => {
+    updateContent: async (parent, { _id, contentHead, contentText }) => {
       try {
-        const ourDojo = await Content.findOneAndUpdate(
-          { page: 'home', section: 'ourDojo' },
-          { contentText: contentText },
+        const content = await Content.findByIdAndUpdate(
+          { _id },
+          { contentHead, contentText },
           { new: true }
         );
-        return ourDojo;
+        const updatedContent = await Content.findById({ _id });
+        return content;
       } catch (error) {
         return error;
       }

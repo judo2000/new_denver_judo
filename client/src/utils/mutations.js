@@ -1,20 +1,20 @@
 import { gql } from '@apollo/client';
 
 // mutation to update page
-export const UPDATE_PAGE = gql`
-  mutation UpdatePage(
-    $pageTitle: String!
-    $pageHeading: String!
-    $content: String!
+export const UPDATE_CONTENT = gql`
+  mutation updateContent(
+    $id: String!
+    $contentHead: String!
+    $contentText: String!
   ) {
-    updatePage(
-      pageTitle: $pageTitle
-      pageHeading: $pageHeading
-      content: $content
+    updateContent(
+      _id: $id
+      contentHead: $contentHead
+      contentText: $contentText
     ) {
-      pageTitle
-      pageHeading
-      content
+      _id
+      contentHead
+      contentText
     }
   }
 `;

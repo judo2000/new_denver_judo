@@ -137,9 +137,18 @@ const HomeScreen = () => {
                       {dojoLoading ? 'LOADING...' : ourDojo.contentHead}
                     </h2>
                     <span className="section-text text-white">
-                      {dojoLoading ? 'LOADING...' : ourDojo.contentText}
+                      {dojoLoading ? (
+                        'LOADING...'
+                      ) : (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: ourDojo.contentText,
+                          }}
+                        />
+                      )}
                     </span>
                   </div>
+                  )
                 </Col>
                 <Col sm={12} md={6} className="ps-2 py-3">
                   <div className="ms-4 text-center">

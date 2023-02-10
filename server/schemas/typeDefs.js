@@ -2,8 +2,8 @@ const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type Content {
     _id: ID
-    page: String!
-    section: String!
+    page: String
+    section: String
     contentHead: String!
     contentText: String!
   }
@@ -19,6 +19,7 @@ const typeDefs = gql`
 
   type Query {
     contents: [Content!]!
+    contentById(_id: String!): Content
     ourDojo(page: String!, section: String!): [Content!]
     instructors: [Instructor!]!
     headInstructors(instructorType: String!): [Instructor!]
@@ -38,10 +39,10 @@ const typeDefs = gql`
       instructorImage: String
       instructorBio: String!
     ): Instructor
-    updateOurDojo(
-      page: String!
-      section: String!
-      contentText: String!
+    updateContent(
+      _id: String
+      contentHead: String
+      contentText: String
     ): Content
   }
 `;

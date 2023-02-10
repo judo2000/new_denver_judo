@@ -1,6 +1,11 @@
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { useState } from 'react';
-import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
+import {
+  Route,
+  Routes,
+  BrowserRouter as Router,
+  Outlet,
+} from 'react-router-dom';
 import HomeScreen from './screens/HomeScreen';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -121,12 +126,13 @@ function App() {
                 </Nav.Link>
               </LinkContainer>
             </Nav>
+            <Outlet />
           </div>
           <main>
             <Routes>
-              <Route path="/" element={<HomeScreen />} />
+              <Route index element={<HomeScreen />} />
               <Route path="/about" element={<AboutScreen />} />
-              <Route path="/_admin" element={<AdminScreen />} />
+              <Route path="_admin/*" element={<AdminScreen />} />
             </Routes>
           </main>
           <footer>

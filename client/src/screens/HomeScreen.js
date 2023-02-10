@@ -8,15 +8,21 @@ import { Link } from 'react-router-dom';
 import FAQ from '../components/FAQ';
 import GMap from '../components/Map';
 import { useQuery } from '@apollo/client';
-import { GET_OUR_DOJO } from '../utils/queries';
+import { GET_KANO, GET_OUR_DOJO } from '../utils/queries';
 
 const HomeScreen = () => {
   const { loading: dojoLoading, data } = useQuery(GET_OUR_DOJO, {
     variables: { page: 'home', section: 'ourDojo' },
   });
-  console.log(data);
+
   const ourDojo = data?.ourDojo[0] || {};
-  console.log(dojoLoading);
+
+  const { loading: kanoLoading, data: kanoData } = useQuery(GET_KANO, {
+    variables: { page: 'home', section: 'kano' },
+  });
+
+  console.log(kanoData);
+  const kano = kanoData?.kano[0] || {};
 
   return (
     <>
@@ -121,10 +127,19 @@ const HomeScreen = () => {
                 </Col>
                 <Col sm={12} md={6} className="ps-2 py-3">
                   <div className="ms-4">
-                    <h2 className="section-heading text-white">Jigoro Kano</h2>
+                    <h2 className="section-heading text-white">
+                      {dojoLoading ? 'LOADING...' : kano.contentHead}
+                    </h2>
                     <span className="section-text text-white">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Velit accusamus sequi doloremque. Aut, nesciunt quod.
+                      {dojoLoading ? (
+                        'LOADING...'
+                      ) : (
+                        <div
+                          dangerouslySetInnerHTML={{
+                            __html: kano.contentText,
+                          }}
+                        />
+                      )}
                     </span>
                   </div>
                 </Col>
@@ -148,7 +163,6 @@ const HomeScreen = () => {
                       )}
                     </span>
                   </div>
-                  )
                 </Col>
                 <Col sm={12} md={6} className="ps-2 py-3">
                   <div className="ms-4 text-center">

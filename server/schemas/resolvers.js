@@ -16,6 +16,13 @@ const resolvers = {
       });
       return ourDojo;
     },
+    kano: async (parent, { page, section }) => {
+      const kano = await Content.find({
+        page: 'home',
+        section: 'kano',
+      });
+      return kano;
+    },
     headInstructors: async (parent, { instructorType }) => {
       let headInstructors = await Instructor.find({
         instructorType: 'headInstructor',

@@ -21,6 +21,7 @@ const typeDefs = gql`
     contents: [Content!]!
     contentById(_id: String!): Content
     ourDojo(page: String!, section: String!): [Content!]
+    kano(page: String!, section: String!): [Content!]
     instructors: [Instructor!]!
     headInstructors(instructorType: String!): [Instructor!]
   }

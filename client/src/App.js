@@ -8,6 +8,7 @@ import Nav from 'react-bootstrap/Nav';
 import { LinkContainer } from 'react-router-bootstrap';
 import Button from 'react-bootstrap/Button';
 import AboutScreen from './screens/AboutScreen';
+import AdminScreen from './screens/AdminScreen';
 
 // Construct main GraphQL API endpoint
 const client = new ApolloClient({
@@ -125,6 +126,7 @@ function App() {
             <Routes>
               <Route path="/" element={<HomeScreen />} />
               <Route path="/about" element={<AboutScreen />} />
+              <Route path="/_admin" element={<AdminScreen />} />
             </Routes>
           </main>
           <footer>

@@ -7,8 +7,17 @@ import video from '../assets/Denver-Judo-Splash-1080.mp4';
 import { Link } from 'react-router-dom';
 import FAQ from '../components/FAQ';
 import GMap from '../components/Map';
+import { useQuery } from '@apollo/client';
+import { GET_OUR_DOJO } from '../utils/queries';
 
 const HomeScreen = () => {
+  const { loading: dojoLoading, data } = useQuery(GET_OUR_DOJO, {
+    variables: { page: 'home', section: 'ourDojo' },
+  });
+  console.log(data);
+  const ourDojo = data?.ourDojo[0] || {};
+  console.log(dojoLoading);
+
   return (
     <>
       <section id="video" className="text-center">
@@ -120,13 +129,15 @@ const HomeScreen = () => {
                   </div>
                 </Col>
               </Row>
+
               <Row className="py-5 ">
                 <Col sm={12} md={6} className="ps-2 py-3">
                   <div className="ms-4">
-                    <h2 className="section-heading text-white">Our Dojo</h2>
+                    <h2 className="section-heading text-white">
+                      {dojoLoading ? 'LOADING...' : ourDojo.contentHead}
+                    </h2>
                     <span className="section-text text-white">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Velit accusamus sequi doloremque. Aut, nesciunt quod.
+                      {dojoLoading ? 'LOADING...' : ourDojo.contentText}
                     </span>
                   </div>
                 </Col>
@@ -142,6 +153,7 @@ const HomeScreen = () => {
               </Row>
             </Col>
           </Row>
+          )
         </div>
       </section>
 

@@ -1,8 +1,8 @@
-const { Content, Instructor } = require('../models');
+const { Content, Instructor, FAQ } = require('../models');
 const resolvers = {
   Query: {
     contents: async (parent, { page, section }) => {
-      const contents = await Content.find({});
+      const contents = await Content.find({}).sort({ _id: 1 });
       return contents;
     },
     contentById: async (parent, { _id }) => {
@@ -29,15 +29,21 @@ const resolvers = {
       });
       return headInstructors;
     },
+    assistantInstructors: async (parent, { instructorType }) => {
+      let assistantInstructors = await Instructor.find({
+        instructorType: 'assistantInstructor',
+      }).sort({ instructorRank: 1 });
+      return assistantInstructors;
+    },
+    faqs: async () => {
+      const faqs = await FAQ.find({});
+      return faqs;
+    },
   },
   Mutation: {
     addContent: async (parent, args) => {
       const content = await Content.create(args);
       return content;
-    },
-    addInstructor: async (parent, args) => {
-      const instructor = await Instructor.create(args);
-      return instructor;
     },
     updateContent: async (parent, { _id, contentHead, contentText }) => {
       try {
@@ -51,6 +57,43 @@ const resolvers = {
       } catch (error) {
         return error;
       }
+    },
+    addInstructor: async (parent, args) => {
+      const instructor = await Instructor.create(args);
+      return instructor;
+    },
+    updateInstructor: async (
+      parent,
+      {
+        _id,
+        instructorType,
+        instructorName,
+        instructorRank,
+        instructorImage,
+        instructorBio,
+      }
+    ) => {
+      try {
+        const instructor = await Instructor.findByIdAndUpdate(
+          { _id },
+          {
+            instructorType,
+            instructorName,
+            instructorRank,
+            instructorImage,
+            instructorBio,
+          },
+          { new: true }
+        );
+        const updatedInstructor = await Instructor.findById({ _id });
+        return updatedInstructor;
+      } catch (error) {
+        return error;
+      }
+    },
+    addFAQ: async (parent, args) => {
+      const faq = await FAQ.create(args);
+      return faq;
     },
   },
 };

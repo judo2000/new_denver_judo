@@ -34,7 +34,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className='faqs'>
+    <div className="faqs">
       {faqs.map((faq, i) => (
         <SingleFAQ faq={faq} key={i} index={i} toggleFAQ={toggleFAQ} />
       ))}

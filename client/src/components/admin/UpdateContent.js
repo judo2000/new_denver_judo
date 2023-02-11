@@ -8,7 +8,7 @@ import Button from 'react-bootstrap/Button';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-const Content = () => {
+const UpdateContent = () => {
   const { id } = useParams();
   const { loading, data } = useQuery(GET_CONTENT_BY_ID, {
     variables: { id: id },
@@ -38,13 +38,10 @@ const Content = () => {
           contentText,
         },
       });
-      console.log('DATA!!!!', data);
       navigate('/_admin');
     } catch (error) {
       console.log(error);
     }
-    console.log('form submitted');
-    console.log(contentText);
   };
 
   return (
@@ -71,4 +68,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default UpdateContent;

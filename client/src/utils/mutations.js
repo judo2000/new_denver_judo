@@ -19,50 +19,27 @@ export const UPDATE_CONTENT = gql`
   }
 `;
 
-// export const CREATE_COURSE = gql`
-//   mutation AddCourse(
-//     $courseTitle: String!
-//     $description: String!
-//     $creator: String!
-//   ) {
-//     addCourse(
-//       courseTitle: $courseTitle
-//       description: $description
-//       creator: $creator
-//     ) {
-//       _id
-//       courseTitle
-//       description
-//     }
-//   }
-// `;
-// export const ENROLL_IN_COURSE = gql`
-//   mutation EnrollInCourse($courseId: String!) {
-//     enrollInCourse(courseId: $courseId) {
-//       _id
-//       email
-//       firstName
-//     }
-//   }
-// `;
-
-// export const DROP_COURSE = gql`
-//   mutation DropCourse($courseId: String!) {
-//     dropCourse(courseId: $courseId) {
-//       enrolledCourses {
-//         courseTitle
-//         _id
-//       }
-//     }
-//   }
-// `;
-
-// export const DELETE_COURSE = gql`
-//   mutation Mutation($courseId: String!) {
-//     deleteCourse(courseId: $courseId) {
-//       courseTitle
-//       _id
-//       description
-//     }
-//   }
-// `;
+export const UPDATE_INSTRUCTOR = gql`
+  mutation UpdateInstructor(
+    $instructorType: String!
+    $instructorName: String!
+    $instructorRank: String!
+    $instructorBio: String!
+    $id: String!
+  ) {
+    updateInstructor(
+      instructorType: $instructorType
+      instructorName: $instructorName
+      instructorRank: $instructorRank
+      instructorBio: $instructorBio
+      _id: $id
+    ) {
+      _id
+      instructorBio
+      instructorImage
+      instructorName
+      instructorRank
+      instructorType
+    }
+  }
+`;

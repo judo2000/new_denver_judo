@@ -9,6 +9,7 @@ import FAQ from '../components/FAQ';
 import GMap from '../components/Map';
 import { useQuery } from '@apollo/client';
 import { GET_KANO, GET_OUR_DOJO } from '../utils/queries';
+import Loader from '../components/Loader';
 
 const HomeScreen = () => {
   const { loading: dojoLoading, data } = useQuery(GET_OUR_DOJO, {
@@ -24,6 +25,74 @@ const HomeScreen = () => {
   console.log(kanoData);
   const kano = kanoData?.kano[0] || {};
 
+  (function (
+    win,
+    doc,
+    zenJSHost,
+    src,
+    module,
+    partitionApiKey,
+    widgetInstanceId
+  ) {
+    win.zenplanner = win.zenplanner || {};
+    win.zenplanner.directLoadArgs = win.zenplanner.directLoadArgs || [];
+    var tryCount = 0,
+      intervalId = null;
+    function afterLoad() {
+      if (
+        win.zenplanner.directLoader !== undefined &&
+        window.zenplanner.directLoader !== null
+      ) {
+        clearInterval(intervalId);
+        for (var i = 0, l = win.zenplanner.directLoadArgs.length; l > i; i++) {
+          if (
+            win.zenplanner.directLoadArgs[i].widgetInstanceId ===
+            widgetInstanceId
+          ) {
+            win.zenplanner.directLoader.loadWidget(
+              zenJSHost,
+              module,
+              partitionApiKey,
+              widgetInstanceId
+            );
+          }
+        }
+      } else if (tryCount++ > 200) {
+        console.log('Zen Planner widget : ' + module + ', failed to load.');
+        clearInterval(intervalId);
+      }
+    }
+    if (
+      win.zenplanner.directLoader === undefined ||
+      win.zenplanner.directLoader === null
+    ) {
+      win.zenplanner.directLoadArgs.push({
+        module: module,
+        partitionApiKey: partitionApiKey,
+        widgetInstanceId: widgetInstanceId,
+      });
+      var s = doc.createElement('script');
+      s.async = 1;
+      s.src = zenJSHost + '/' + src;
+      doc.head.appendChild(s);
+      intervalId = setInterval(afterLoad, 50);
+    } else {
+      win.zenplanner.directLoader.loadWidget(
+        zenJSHost,
+        module,
+        partitionApiKey,
+        widgetInstanceId
+      );
+    }
+  })(
+    window,
+    document,
+    'https://studio.zenplanner.com',
+    'zenplanner/studio/target/zp-widget-direct.js',
+    'freetrial',
+    '6e318d86-ee75-4758-ab91-65e9ce00b105',
+    '583f3707-bf52-41ea-8215-8213abeb0f83'
+  );
   return (
     <>
       <section id="video" className="text-center">
@@ -102,12 +171,7 @@ const HomeScreen = () => {
       <section id="try-a-class" className="px-4 mt-4 try-a-class">
         <h2 className="ms-4 free-class-heading pt-4">TRY A FREE CLASS</h2>
         <div className="text-center py-4">
-          <div
-            dangerouslySetInnerHTML={{
-              __html:
-                "<iframe id='idZenPlannerFrame' className='zenFrame' style='width: 80%; height: 500px; ' src='https://denverjudo.zenplanner.com/zenplanner/portal/freeTrial.cfm?type=FreeTrial&FRAME=true' />",
-            }}
-          />
+          <div id="freetrial_583f3707-bf52-41ea-8215-8213abeb0f83"></div>
         </div>
       </section>
 
@@ -127,20 +191,22 @@ const HomeScreen = () => {
                 </Col>
                 <Col sm={12} md={6} className="ps-2 py-3">
                   <div className="ms-4">
-                    <h2 className="section-heading text-white">
-                      {dojoLoading ? 'LOADING...' : kano.contentHead}
-                    </h2>
-                    <span className="section-text text-white">
-                      {dojoLoading ? (
-                        'LOADING...'
-                      ) : (
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: kano.contentText,
-                          }}
-                        />
-                      )}
-                    </span>
+                    {kanoLoading ? (
+                      <Loader />
+                    ) : (
+                      <>
+                        <h2 className="section-heading text-white">
+                          {kano.contentHead}
+                        </h2>
+                        <span className="section-text text-white">
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: kano.contentText,
+                            }}
+                          />
+                        </span>
+                      </>
+                    )}
                   </div>
                 </Col>
               </Row>
@@ -148,20 +214,22 @@ const HomeScreen = () => {
               <Row className="py-5 ">
                 <Col sm={12} md={6} className="ps-2 py-3">
                   <div className="ms-4">
-                    <h2 className="section-heading text-white">
-                      {dojoLoading ? 'LOADING...' : ourDojo.contentHead}
-                    </h2>
-                    <span className="section-text text-white">
-                      {dojoLoading ? (
-                        'LOADING...'
-                      ) : (
-                        <div
-                          dangerouslySetInnerHTML={{
-                            __html: ourDojo.contentText,
-                          }}
-                        />
-                      )}
-                    </span>
+                    {kanoLoading ? (
+                      <Loader />
+                    ) : (
+                      <>
+                        <h2 className="section-heading text-white">
+                          {ourDojo.contentHead}
+                        </h2>
+                        <span className="section-text text-white">
+                          <div
+                            dangerouslySetInnerHTML={{
+                              __html: ourDojo.contentText,
+                            }}
+                          />
+                        </span>
+                      </>
+                    )}
                   </div>
                 </Col>
                 <Col sm={12} md={6} className="ps-2 py-3">

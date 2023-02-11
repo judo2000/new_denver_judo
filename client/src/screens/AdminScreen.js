@@ -2,7 +2,7 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import { Routes, Route } from 'react-router-dom';
 import AdminHome from '../components/admin/AdminHome';
-import Content from '../components/admin/Content';
+import UpdateContent from '../components/admin/UpdateContent';
 
 const AdminScreen = () => {
   return (
@@ -11,7 +11,7 @@ const AdminScreen = () => {
         <h1>Admin</h1>
         <Routes>
           <Route index element={<AdminHome />} />
-          <Route path=":id" element={<Content />} />
+          <Route path="/updateContent/:id" element={<UpdateContent />} />
         </Routes>
       </Container>
     </>

@@ -17,6 +17,13 @@ const typeDefs = gql`
     instructorBio: String!
   }
 
+  type FAQ {
+    _id: ID
+    question: String!
+    answer: String!
+    open: Boolean!
+  }
+
   type Query {
     contents: [Content!]!
     contentById(_id: String!): Content
@@ -24,6 +31,8 @@ const typeDefs = gql`
     kano(page: String!, section: String!): [Content!]
     instructors: [Instructor!]!
     headInstructors(instructorType: String!): [Instructor!]
+    assistantInstructors(instructorType: String!): [Instructor!]
+    faqs: [FAQ!]!
   }
 
   type Mutation {
@@ -40,11 +49,20 @@ const typeDefs = gql`
       instructorImage: String
       instructorBio: String!
     ): Instructor
+    updateInstructor(
+      _id: String!
+      instructorType: String!
+      instructorName: String!
+      instructorRank: String!
+      instructorImage: String
+      instructorBio: String!
+    ): Instructor
     updateContent(
       _id: String
       contentHead: String
       contentText: String
     ): Content
+    addFAQ(_id: String, question: String!, answer: String!, open: Boolean): FAQ
   }
 `;
 

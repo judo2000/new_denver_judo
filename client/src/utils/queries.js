@@ -60,3 +60,14 @@ export const GET_HEAD_INSTRUCTORS = gql`
     }
   }
 `;
+
+export const GET_FAQS = gql`
+  query FAQS {
+    faqs {
+      _id
+      answer
+      question
+      open
+    }
+  }
+`;

@@ -275,6 +275,26 @@ footer {
   color: var(--dj-red);
 }
 
+.spinner {
+  width: 80px;
+  height: 80px;
+  margin: auto;
+  display: block;
+  color: var(--dj-red);
+}
+
+.spinner-text {
+  color: var(--dj-red);
+}
+
+.updateBtn {
+  background-color: var(--dj-red);
+}
+
+.updateBtn:hover {
+  background-color: var(--dj-blue);
+}
+
 @media screen and (max-width: 400px) {
   .home-heading {
     font-size: 40;

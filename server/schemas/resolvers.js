@@ -23,6 +23,10 @@ const resolvers = {
       });
       return kano;
     },
+    instructors: async () => {
+      const instructors = await Instructor.find({});
+      return instructors;
+    },
     headInstructors: async (parent, { instructorType }) => {
       let headInstructors = await Instructor.find({
         instructorType: 'headInstructor',

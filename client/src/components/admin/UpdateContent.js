@@ -31,7 +31,7 @@ const UpdateContent = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await updateContent({
+      await updateContent({
         variables: {
           id,
           contentHead,

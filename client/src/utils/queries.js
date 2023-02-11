@@ -48,6 +48,19 @@ export const GET_KANO = gql`
   }
 `;
 
+export const GET_INSTRUCTORS = gql`
+  query Instructors {
+    instructors {
+      _id
+      instructorBio
+      instructorImage
+      instructorName
+      instructorRank
+      instructorType
+    }
+  }
+`;
+
 export const GET_HEAD_INSTRUCTORS = gql`
   query HeadInstructor($instructorType: String!) {
     headInstructors(instructorType: $instructorType) {

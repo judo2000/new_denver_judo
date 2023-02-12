@@ -6,6 +6,8 @@ import {
   BrowserRouter as Router,
   Outlet,
 } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import HomeScreen from './screens/HomeScreen';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
@@ -34,6 +36,7 @@ function App() {
               : 'site-container d-flex flex-column'
           }
         >
+          <ToastContainer position="top-center" limit={1} />
           <header>
             <Navbar
               expand="lg"

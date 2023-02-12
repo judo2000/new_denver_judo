@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 import { GET_CONTENTS, GET_INSTRUCTORS } from '../../utils/queries';
 import Loader from '../Loader';
+import { Helmet } from 'react-helmet-async';
 const AdminHome = () => {
   const { loading: contentLoading, data: contentData } = useQuery(GET_CONTENTS);
   const contents = contentData?.contents || {};
@@ -17,7 +18,10 @@ const AdminHome = () => {
 
   return (
     <>
-      <h2>Page Content</h2>
+      <Helmet>
+        <title>Update Site Content</title>
+      </Helmet>
+      <h1 className="my-3">Update Site Content</h1>
       {contentLoading || instructorLoading ? (
         <Loader />
       ) : (
@@ -25,7 +29,7 @@ const AdminHome = () => {
           <Table striped bordered hover variant="dark" responsive>
             <thead>
               <tr>
-                <th colspan="5" className="text-center">
+                <th colSpan="5" className="text-center">
                   Page Content
                 </th>
               </tr>
@@ -61,7 +65,7 @@ const AdminHome = () => {
           <Table striped bordered hover variant="dark" responsive>
             <thead>
               <tr>
-                <th colspan="5" className="text-center">
+                <th colSpan="5" className="text-center">
                   Our Instructors
                 </th>
               </tr>

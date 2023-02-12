@@ -15,12 +15,6 @@ const AboutScreen = () => {
 
   const headInstData = data?.headInstructors || {};
 
-  loading
-    ? console.log('loading...')
-    : headInstData.map((h) => console.log(h.instructorName));
-  //const senseiData = data?.content || {};
-
-  //console.log(senseiData);
   return loading ? (
     'loading...'
   ) : (
@@ -128,6 +122,9 @@ const AboutScreen = () => {
                   />
                   {inst.instructorName}
                   <br />
+                  {inst.instructorRank}
+                  <br />
+                  <br />
                   <MoreLessText>{parse(inst.instructorBio)}</MoreLessText>
                 </Col>
               </Row>
@@ -137,9 +134,6 @@ const AboutScreen = () => {
             </div>
           ))}
 
-          <div className="text-center">
-            <img src="assets/img/divider_white.png" alt="divider" />
-          </div>
           <Row className="d-flex justify-content-around">
             <Col lg={3} className="p-3">
               <strong>Keith Lewis</strong>

@@ -30,6 +30,7 @@ const typeDefs = gql`
     ourDojo(page: String!, section: String!): [Content!]
     kano(page: String!, section: String!): [Content!]
     instructors: [Instructor!]!
+    instructorById(_id: String!): Instructor
     headInstructors(instructorType: String!): [Instructor!]
     assistantInstructors(instructorType: String!): [Instructor!]
     faqs: [FAQ!]!

@@ -27,6 +27,10 @@ const resolvers = {
       const instructors = await Instructor.find({});
       return instructors;
     },
+    instructorById: async (parent, { _id }) => {
+      const instructor = await Instructor.findById(_id);
+      return instructor;
+    },
     headInstructors: async (parent, { instructorType }) => {
       let headInstructors = await Instructor.find({
         instructorType: 'headInstructor',

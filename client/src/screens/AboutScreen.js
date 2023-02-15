@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useQuery } from '@apollo/client';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -40,7 +40,6 @@ const AboutScreen = (props) => {
   let third3;
 
   if (!otherInstLoading) {
-    const otherCount = otherInst.length;
     first4 = otherInst.slice(0, 4);
     console.log(otherInst.length);
     second3 = otherInst.slice(4, 7);

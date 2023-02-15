@@ -48,6 +48,7 @@ const UpdateInstructor = () => {
     e.preventDefault();
 
     try {
+      console.log(instructorImage);
       await updateInstructor({
         variables: {
           id,

@@ -86,6 +86,19 @@ export const GET_HEAD_INSTRUCTORS = gql`
   }
 `;
 
+export const GET_INSTRUCTORS_BY_TYPE = gql`
+  query InstructorsByType($instructorType: String!) {
+    instructorsByType(instructorType: $instructorType) {
+      _id
+      instructorBio
+      instructorImage
+      instructorName
+      instructorRank
+      instructorType
+    }
+  }
+`;
+
 export const GET_FAQS = gql`
   query FAQS {
     faqs {

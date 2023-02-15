@@ -31,6 +31,7 @@ const typeDefs = gql`
     kano(page: String!, section: String!): [Content!]
     instructors: [Instructor!]!
     instructorById(_id: String!): Instructor
+    instructorsByType(instructorType: String!): [Instructor!]
     headInstructors(instructorType: String!): [Instructor!]
     assistantInstructors(instructorType: String!): [Instructor!]
     faqs: [FAQ!]!
@@ -48,7 +49,7 @@ const typeDefs = gql`
       instructorName: String!
       instructorRank: String!
       instructorImage: String
-      instructorBio: String!
+      instructorBio: String
     ): Instructor
     updateInstructor(
       _id: String!

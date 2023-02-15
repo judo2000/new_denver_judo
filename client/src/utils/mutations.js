@@ -24,6 +24,7 @@ export const UPDATE_INSTRUCTOR = gql`
     $instructorType: String!
     $instructorName: String!
     $instructorRank: String!
+    $instructorImage: String
     $instructorBio: String!
     $id: String!
   ) {
@@ -31,14 +32,15 @@ export const UPDATE_INSTRUCTOR = gql`
       instructorType: $instructorType
       instructorName: $instructorName
       instructorRank: $instructorRank
+      instructorImage: $instructorImage
       instructorBio: $instructorBio
       _id: $id
     ) {
       _id
       instructorBio
-      instructorImage
       instructorName
       instructorRank
+      instructorImage
       instructorType
     }
   }

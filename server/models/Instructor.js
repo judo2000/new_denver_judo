@@ -18,7 +18,6 @@ const instructorSchema = new Schema({
   },
   instructorBio: {
     type: String,
-    required: true,
   },
 });
 

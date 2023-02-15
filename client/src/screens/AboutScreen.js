@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -6,16 +6,48 @@ import { Helmet } from 'react-helmet-async';
 import parse from 'html-react-parser';
 import MoreLessText from '../components/MoreLessText';
 import GMap from '../components/Map';
-import { GET_HEAD_INSTRUCTORS } from '../utils/queries';
+import {
+  GET_HEAD_INSTRUCTORS,
+  GET_INSTRUCTORS_BY_TYPE,
+} from '../utils/queries';
 
-const AboutScreen = () => {
+const AboutScreen = (props) => {
   const { loading, data } = useQuery(GET_HEAD_INSTRUCTORS, {
     variables: { instructorType: 'headInstructor' },
   });
 
   const headInstData = data?.headInstructors || {};
 
-  return loading ? (
+  const { loading: assistInstLoading, data: assistInstData } = useQuery(
+    GET_INSTRUCTORS_BY_TYPE,
+    {
+      variables: { instructorType: 'assistantInstructor' },
+    }
+  );
+
+  const assistantInst = assistInstData?.instructorsByType || {};
+
+  const { loading: otherInstLoading, data: otherInstData } = useQuery(
+    GET_INSTRUCTORS_BY_TYPE,
+    {
+      variables: { instructorType: 'other' },
+    }
+  );
+
+  const otherInst = otherInstData?.instructorsByType || {};
+  let first4;
+  let second3;
+  let third3;
+
+  if (!otherInstLoading) {
+    const otherCount = otherInst.length;
+    first4 = otherInst.slice(0, 4);
+    console.log(otherInst.length);
+    second3 = otherInst.slice(4, 7);
+    third3 = otherInst.slice(7, 9);
+  }
+
+  return loading || assistInstLoading || otherInstLoading ? (
     'loading...'
   ) : (
     <div>
@@ -107,8 +139,8 @@ const AboutScreen = () => {
         <h2 className="cap-heading text-center">Meet Our Senseis</h2>
         <div className="pb-4">
           {headInstData.map((inst, index) => (
-            <div>
-              <Row key={inst._id} className="justify-content-center">
+            <div key={inst._id}>
+              <Row className="justify-content-center">
                 <Col lg={10} className="p-3 ">
                   <img
                     className="p-2 home-about-img img-fluid responsive"
@@ -133,163 +165,72 @@ const AboutScreen = () => {
               </div>
             </div>
           ))}
-
-          <Row className="d-flex justify-content-around">
-            <Col lg={3} className="p-3">
-              <strong>Keith Lewis</strong>
-              <br />
-              <img
-                src="assets/img/Keith.png"
-                alt="Keith Lewis"
-                style={{
-                  maxWidth: '184px',
-                  maxHeight: '250px',
-                }}
-              />
-              <br />
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt consectetur impedit, similique suscipit placeat odit
-                error esse voluptatem magni veritatis! Voluptatibus iusto
-                voluptas omnis illum quasi laboriosam sit dolorem esse repellat
-                magnam provident alias, est vel ipsum odit inventore mollitia.
-                Repellat quas doloremque veniam voluptatibus dignissimos
-                molestias libero odio nisi.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
-                perferendis eligendi consequuntur quaerat accusamus quisquam
-                sequi nesciunt in, officia reprehenderit voluptatibus nisi,
-                ratione tempora. Nulla, sed consequuntur autem nobis adipisci
-                voluptatum velit, modi dolore aliquid tempore saepe pariatur
-                accusantium blanditiis aut nesciunt! Error, earum!
-              </p>
-            </Col>
-            <Col lg={3} className="p-3">
-              <strong>Alyssa Zawack</strong>
-              <br />
-              <img
-                src="assets/img/Kedge_Alyssa.png"
-                alt="Alyssa Zawack"
-                style={{ maxWidth: '184px', maxHeight: '250px' }}
-              />
-              <br />
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt consectetur impedit, similique suscipit placeat odit
-                error esse voluptatem magni veritatis! Voluptatibus iusto
-                voluptas omnis illum quasi laboriosam sit dolorem esse repellat
-                magnam provident alias, est vel ipsum odit inventore mollitia.
-                Repellat quas doloremque veniam voluptatibus dignissimos
-                molestias libero odio nisi.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
-                perferendis eligendi consequuntur quaerat accusamus quisquam
-                sequi nesciunt in, officia reprehenderit voluptatibus nisi,
-                ratione tempora. Nulla, sed consequuntur autem nobis adipisci
-                voluptatum velit, modi dolore aliquid tempore saepe pariatur
-                accusantium blanditiis aut nesciunt! Error, earum!
-              </p>
-            </Col>
-            <Col lg={3} className="p-3">
-              <strong>Kedge Zawack</strong>
-              <br />
-              <img
-                src="assets/img/Kedge_Alyssa.png"
-                alt="Kedge Zawack"
-                style={{ maxWidth: '184px', maxHeight: '250px' }}
-              />
-              <br />
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt consectetur impedit, similique suscipit placeat odit
-                error esse voluptatem magni veritatis! Voluptatibus iusto
-                voluptas omnis illum quasi laboriosam sit dolorem esse repellat
-                magnam provident alias, est vel ipsum odit inventore mollitia.
-                Repellat quas doloremque veniam voluptatibus dignissimos
-                molestias libero odio nisi.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
-                perferendis eligendi consequuntur quaerat accusamus quisquam
-                sequi nesciunt in, officia reprehenderit voluptatibus nisi,
-                ratione tempora. Nulla, sed consequuntur autem nobis adipisci
-                voluptatum velit, modi dolore aliquid tempore saepe pariatur
-                accusantium blanditiis aut nesciunt! Error, earum!
-              </p>
-            </Col>
-          </Row>
-          <Row className="d-flex justify-content-around">
-            <Col lg={4} className="p-3">
-              <strong>Nikki Jones</strong>
-              <br />
-              <img
-                src="assets/img/Nikki_Jones.png"
-                alt="Nikki Jones"
-                style={{ maxWidth: '184px', maxHeight: '250px' }}
-              />
-              <br />
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt consectetur impedit, similique suscipit placeat odit
-                error esse voluptatem magni veritatis! Voluptatibus iusto
-                voluptas omnis illum quasi laboriosam sit dolorem esse repellat
-                magnam provident alias, est vel ipsum odit inventore mollitia.
-                Repellat quas doloremque veniam voluptatibus dignissimos
-                molestias libero odio nisi.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
-                perferendis eligendi consequuntur quaerat accusamus quisquam
-                sequi nesciunt in, officia reprehenderit voluptatibus nisi,
-                ratione tempora. Nulla, sed consequuntur autem nobis adipisci
-                voluptatum velit, modi dolore aliquid tempore saepe pariatur
-                accusantium blanditiis aut nesciunt! Error, earum!
-              </p>
-            </Col>
-            <Col lg={4} className="p-3">
-              <strong>Sophia Teissler</strong>
-              <br />
-              <img
-                src="assets/img/Sophia.png"
-                alt="Sophia Teissler"
-                style={{ maxWidth: '184px', maxHeight: '250px' }}
-              />
-              <br />
-
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Incidunt consectetur impedit, similique suscipit placeat odit
-                error esse voluptatem magni veritatis! Voluptatibus iusto
-                voluptas omnis illum quasi laboriosam sit dolorem esse repellat
-                magnam provident alias, est vel ipsum odit inventore mollitia.
-                Repellat quas doloremque veniam voluptatibus dignissimos
-                molestias libero odio nisi.
-              </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus dicta voluptates error? Obcaecati dicta ducimus
-                perferendis eligendi consequuntur quaerat accusamus quisquam
-                sequi nesciunt in, officia reprehenderit voluptatibus nisi,
-                ratione tempora. Nulla, sed consequuntur autem nobis adipisci
-                voluptatum velit, modi dolore aliquid tempore saepe pariatur
-                accusantium blanditiis aut nesciunt! Error, earum!
-              </p>
+          <Row className="d-flex justify-content-center">
+            <Col lg={8}>
+              <Row className="d-flex justify-content-center">
+                {assistantInst.map((assistInst) => (
+                  <Col lg={4} className="p-3" key={assistInst._id}>
+                    <strong>{assistInst.instructorName}</strong>
+                    <br />
+                    <img
+                      src={`assets/img/${assistInst.instructorImage}`}
+                      alt={assistInst.instructorName}
+                      style={{
+                        maxWidth: '184px',
+                        maxHeight: '250px',
+                      }}
+                    />
+                    <MoreLessText>
+                      {parse(assistInst.instructorBio)}
+                    </MoreLessText>
+                  </Col>
+                ))}
+              </Row>
             </Col>
           </Row>
           <div className="text-center">
             <img src="assets/img/divider_white.png" alt="divider" />
           </div>
-          <h2 className="ms-4 cap-heading pt-4text-center">Other Yudansha</h2>
+
+          <h2 className="ms-4 cap-heading pt-4 text-center">Other Yudansha</h2>
+
+          <Row className="d-flex justify-content-center section-sub-text">
+            <Col lg={2} className="p-3">
+              {first4.map((first) => (
+                <div key={first._id}>
+                  <strong>{first.instructorName}</strong>
+                  <br />
+                  {first.instructorRank}
+                  <br />
+                  <br />
+                </div>
+              ))}
+            </Col>
+            <Col lg={2} className="p-3">
+              {second3.map((second) => (
+                <div key={second._id}>
+                  <strong>{second.instructorName}</strong>
+                  <br />
+                  {second.instructorRank}
+                  <br />
+                  <br />
+                </div>
+              ))}
+            </Col>
+            <Col lg={2} className="p-3">
+              {third3.map((third) => (
+                <div key={third._id}>
+                  <strong>{third.instructorName}</strong>
+                  <br />
+                  {third.instructorRank}
+                  <br />
+                  <br />
+                </div>
+              ))}
+            </Col>
+          </Row>
+
+          <Row className="d-flex justify-content-center section-sub-text"></Row>
           <Row className="d-flex justify-content-center section-sub-text">
             <Col lg={2} className="p-3">
               <strong>Jim Carmer</strong>

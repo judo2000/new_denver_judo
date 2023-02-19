@@ -22,6 +22,8 @@ let uri = 'http://localhost:5000/graphql';
 if (process.env.NODE_ENV === 'production') {
   uri = '/graphql';
 }
+console.log(process.env.NODE_ENV);
+console.log(uri);
 const client = new ApolloClient({
   uri: uri,
   cache: new InMemoryCache(),

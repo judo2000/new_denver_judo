@@ -20,7 +20,7 @@ import AdminScreen from './screens/AdminScreen';
 // Construct main GraphQL API endpoint
 let uri = 'http://localhost:5000/graphql';
 if (process.env.NODE_ENV === 'production') {
-  uri = 'https://denver-judo.herokuapp.com/';
+  uri = `https://denver-judo.herokuapp.com/api/graphql`;
 }
 console.log(process.env.NODE_ENV);
 console.log(uri);

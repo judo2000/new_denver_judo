@@ -18,8 +18,12 @@ import AboutScreen from './screens/AboutScreen';
 import AdminScreen from './screens/AdminScreen';
 
 // Construct main GraphQL API endpoint
+let uri = 'http://localhost:5000/graphql';
+if (process.env.NODE_ENV === 'production') {
+  uri = 'https://denver-judo.herokuapp.com/graphql';
+}
 const client = new ApolloClient({
-  uri: 'https://denver-judo.herokuapp.com/',
+  uri: uri,
   cache: new InMemoryCache(),
 });
 function App() {

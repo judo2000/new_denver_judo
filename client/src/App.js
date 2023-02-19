@@ -19,7 +19,7 @@ import AdminScreen from './screens/AdminScreen';
 
 // Construct main GraphQL API endpoint
 const client = new ApolloClient({
-  uri: '/graphql',
+  uri: 'http://localhost:5000/graphql',
   cache: new InMemoryCache(),
 });
 function App() {

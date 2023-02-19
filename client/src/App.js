@@ -20,7 +20,7 @@ import AdminScreen from './screens/AdminScreen';
 // Construct main GraphQL API endpoint
 let uri = 'http://localhost:5000/graphql';
 if (process.env.NODE_ENV === 'production') {
-  uri = 'https://denver-judo.herokuapp.com/graphql';
+  uri = `https://denver-judo.herokuapp.com/${PORT}graphql`;
 }
 const client = new ApolloClient({
   uri: uri,
